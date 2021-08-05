@@ -35,5 +35,32 @@ export default {
       type: 'text',
       description: 'Текст статьи',
     },
+    {
+      name: 'categories',
+      title: 'Categories',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'category' } }],
+    },
   ],
+  preview: {
+    select: {
+      title: 'title',
+      media: 'image',
+      category0: 'category.0.title',
+      category1: 'category.1.title',
+      category2: 'category.2.title',
+      category3: 'category.3.title',
+    },
+    prepare: ({ title, media, ...categories }) => {
+      const catList = Object.values(categories).filter(
+        (res) => res !== undefined
+      );
+      console.log(categories);
+      return {
+        title,
+        media,
+        subtitle: catList.join(', '),
+      };
+    },
+  },
 };
