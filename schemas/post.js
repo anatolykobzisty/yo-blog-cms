@@ -1,7 +1,10 @@
+import { GrDocumentText as icon } from 'react-icons/gr';
+
 export default {
   name: 'post',
   title: 'Статьи',
   type: 'document',
+  icon,
   fields: [
     {
       name: 'title',
